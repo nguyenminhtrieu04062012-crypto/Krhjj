@@ -1,0 +1,55 @@
+------------------------------------------------
+-- FUNNY SCARY FACE
+------------------------------------------------
+
+createButton("Scary Smile",1.60,function()
+
+	local player = game.Players.LocalPlayer
+	local cam = workspace.CurrentCamera
+
+	local gui = Instance.new("ScreenGui")
+	gui.Parent = player.PlayerGui
+	gui.Name = "ScarySmile"
+
+	local img = Instance.new("ImageLabel", gui)
+	img.Size = UDim2.new(0,0,0,0)
+	img.Position = UDim2.new(0.5,0,0.5,0)
+	img.AnchorPoint = Vector2.new(0.5,0.5)
+	img.BackgroundTransparency = 1
+	img.Image = "rbxassetid://IMAGE_ID_HERE" -- 👈 thay ID ảnh
+	img.ImageTransparency = 0
+
+	-- Zoom in effect
+	for i = 1,15 do
+		img.Size = img.Size + UDim2.new(0,80,0,80)
+		task.wait(0.02)
+	end
+
+	-- Nhấp nháy nhẹ
+	for i = 1,6 do
+		img.ImageTransparency = 0.3
+		task.wait(0.1)
+		img.ImageTransparency = 0
+		task.wait(0.1)
+	end
+
+	-- Âm thanh nhẹ creepy
+	local sound = Instance.new("Sound", gui)
+	sound.SoundId = "rbxassetid://77090508896366" -- đổi nếu muốn
+	sound.Volume = 0.8
+	sound:Play()
+
+	-- Camera rung nhẹ
+	for i = 1,25 do
+		cam.CFrame *= CFrame.new(
+			math.random(-2,2)/100,
+			math.random(-2,2)/100,
+			0
+		)
+		task.wait(0.02)
+	end
+
+	task.wait(2)
+	gui:Destroy()
+
+end)
